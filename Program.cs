@@ -24,7 +24,7 @@ public class FirstClass
         //}
         ArrayList arrList = new ArrayList(arr);
         arrList.Add(6);
-        
+        //test branch
         if (arr.Contains(6))
         {
             Console.WriteLine("arr");
