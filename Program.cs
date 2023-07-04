@@ -1,13 +1,40 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using Study.Processor;
+using System.Threading;
+
 
 public class FirstClass
 {
     public static void Main(string[] args)
     {
+        string str = "hello2";
+        Console.WriteLine(str.LastOrDefault());
+        if ("sd2ld".Contains(str.LastOrDefault()))
+            Console.WriteLine("true");
+        List<int> ints = new List<int>();
+        int sum = ints.Sum();
+
+        DemoThread("sd");
+        Thread t = new Thread(() =>
+        {
+            DemoThread("thread1");
+        });
+        Thread t2 = new Thread(() =>
+        {
+            DemoThread("thread2");
+        });
+        Thread t3 = new Thread(() =>
+        {
+            DemoThread("thread3");
+        });
+        t.Start();
+        t2.Start();
+        t3.Start();
+        Console.ReadLine();
         //test git fetch
         #region stack issue
         int[] arr = new int[7] { 2, 1, 3, 2, 8, 5, 7 };
@@ -44,10 +71,20 @@ public class FirstClass
         }
         #endregion
 
-
+        #region comment
         //int i = 3;
         //int j = 3;
-
+        Student stu = new Student();
+        string per1 = stu.getName();
+        string per2 = stu.getName();
+        if (per1 == per2)
+        {
+            Console.WriteLine("pass");
+        }
+        else
+        {
+            Console.WriteLine("failed");
+        }
 
         foreach (int item in res)
         {
@@ -87,6 +124,7 @@ public class FirstClass
         int second = 4;
         //first = Swap(first, second);
         //Console.WriteLine("first : " + first);
+        #endregion
     }
     public static int Swap(int a, int b)
     {
@@ -95,27 +133,16 @@ public class FirstClass
         b = i;
         return a;
     }
-    public class Student : Person
+
+    public static void DemoThread(string str)
     {
-        private string _name;
-        public Student(string name)
+        for (int i = 0; i < 5; i++)
         {
-            _name = name;
-        }
-        public void Study()
-        {
-            Console.WriteLine("the student is studying");
-        }
-        public void Speak()
-        {
-            Console.WriteLine("Student is doing...");
-        }
-    }
-    public class Teacher : Person
-    {
-        public void Speak()
-        {
-            Console.WriteLine("Teacher is doing...");
+            Thread.Sleep(TimeSpan.FromSeconds(1));
+            Console.WriteLine(str + " - " + i);
         }
     }
 }
+
+
+
